@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
-
+import { Document } from 'mongoose';
+import IUser from '../models/Users/userInterface';
 import CertificationCenterModel from '../models/Users/certificationCenter';
 import tokenService from '../services/tokenService';
 
@@ -10,19 +11,19 @@ export default {
 
 async function signUpUser(req, res) {
     await bcrypt.hash(req.body.password, 2, async (err, hash) => {
-        const newCertificationCenter = new CertificationCenterModel({
+        const user = new CertificationCenterModel({
             email: req.body.email,
             password: hash,
             name: req.body.name
         }); 
         try {
-            await newCertificationCenter.save();
+            await user.save();
         } catch {
             res.status(400).send(err);
             return;
         }
-        const accesToken = tokenService.createToken(newCertificationCenter);
-        const refreshToken = tokenService.createRefreshToken(newCertificationCenter);
+        const accesToken = tokenService.createToken(user);
+        const refreshToken = tokenService.createRefreshToken(user);
         res.status(201).send({
             "accesToken": accesToken[0], 
             "refreshToken": refreshToken, 
