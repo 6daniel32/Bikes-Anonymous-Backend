@@ -1,5 +1,6 @@
 import BikeRiderInfo from '../types/bikeRiderInfo';
-import { PDFDocument, StandardFonts,rgb } from 'pdf-lib';
+import { PDFDocument, StandardFonts } from 'pdf-lib';
+import licenseEmailingService from '../services/licenseEmailingService';
 
 const fs = require('fs');
 
@@ -21,6 +22,6 @@ export default async function(bikeRider: BikeRiderInfo) {
         font: timesRomanFont,
     });
     const pdfBytes = await pdfDoc.save();
-    fs.createWriteStream('./uploads/myFile.pdf').write(pdfBytes);
+    licenseEmailingService(pdfBytes).catch(err => console.log(err));
     return;
 }
