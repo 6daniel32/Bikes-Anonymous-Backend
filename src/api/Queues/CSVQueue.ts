@@ -1,7 +1,17 @@
 const Queue = require('bull');
-const CSVQueue = new Queue('CSVQueue');
-CSVQueue.process((job, done) => {
-    console.log(job.data);
-    done(); //call this when finished 
-});
-export default CSVQueue;
+
+export class CSVQueue extends Queue {
+    private instance: CSVQueue;
+
+    private constructor() {
+        super();
+        this.instance = new Queue('CSVQueue');
+    }
+
+    public static getInstance(): CSVQueue {
+        if(!CSVQueue.instance) CSVQueue.instance = new CSVQueue();
+        return CSVQueue.instance;
+    }
+}
+
+
