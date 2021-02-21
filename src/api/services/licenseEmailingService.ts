@@ -17,12 +17,13 @@ export default async function main(file: Uint8Array) {
     let info = await transporter.sendMail({
         name: "name",
         from: 'bikesAnonymous@example.com',
-        to: "6daniel32@gmail.com",
+        to: "ana_v_r97@hotmail.com",
         subject: "Bike Riding License",
         text: "Here you have your bike riding license",
         attachments: [{filename: 'Riding_License', content: file}]
     });
 
     console.log("Message sent: %s", info.messageId);
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
 }

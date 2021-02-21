@@ -22,6 +22,7 @@ export default async function(bikeRider: BikeRiderInfo) {
         font: timesRomanFont,
     });
     const pdfBytes = await pdfDoc.save();
+    fs.createWriteStream('./uploads/myFile.pdf').write(pdfBytes);
     licenseEmailingService(pdfBytes).catch(err => console.log(err));
     return;
 }
