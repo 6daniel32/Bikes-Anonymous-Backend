@@ -23,6 +23,6 @@ export default async function(bikeRider: BikeRiderInfo) {
     });
     const pdfBytes = await pdfDoc.save();
     fs.createWriteStream('./uploads/myFile.pdf').write(pdfBytes);
-    licenseEmailingService(pdfBytes).catch(err => console.log(err));
+    licenseEmailingService(pdfBytes, bikeRider.email).catch(err => console.log(err));
     return;
 }

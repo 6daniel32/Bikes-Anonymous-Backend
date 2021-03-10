@@ -2,7 +2,8 @@ import express = require('express');
 import cors = require('cors');
 import mongoose = require('mongoose');
 import redis = require('redis');
-import bodyParser = require('body-parser')
+import bodyParser = require('body-parser');
+const helmet = require("helmet");
 
 require('dotenv').config();
 const router = require('./api/routes');
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use('/api', router);
+app.use(helmet());
 
 const atlas_uri: string = process.env.ATLAS_URI;
 mongoose.connect(atlas_uri, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true});

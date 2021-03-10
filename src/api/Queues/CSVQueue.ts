@@ -37,7 +37,7 @@ export class CSVQueue extends Queue {
     }
 
     public addJob(data: File): void {
-        parser = CSVParse({columns: true}); //renew parser
+        parser = CSVParse({columns: true});
         this.instance.add({'data': data});
     }
 }
