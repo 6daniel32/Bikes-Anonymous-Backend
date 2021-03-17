@@ -16,7 +16,7 @@ For managing tokens, you will be using "passport" and "jwt" so you need a "SECRE
 Example .env file: 
 
 "
-ATLAS_URI=mongodb+srv://yourusername:yourpassword@mern-tutorial-cluster.mk6ia.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+ATLAS_URI=mongodb+srv://yourusername:yourpassword@myour-cluster.mk6ia.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
 SECRET_TOKEN=SecretToken
 SECRET_REFRESH_TOKEN=SecretRefreshToken
